@@ -12,9 +12,17 @@ class UserController extends Controller
         return view('users.add_user', compact('users'));
     }
 
+    public function listUsers(){
+        $usersThatWillComeFromDB = ['Manuela', 'Vítor', 'Alexandre', 'Bruno'];
+
+        return view('users.all_users', compact('usersThatWillComeFromDB'));
+    }
+
     private function getAllUsers(){
-    $users = ['Francisco', 'Luís','Rafaela', 'Maria'];
-    return $users;
+
+        //no futuro carregamos dados da base de dados (query À BD)
+        $users = ['Francisco', 'Luís','Rafaela', 'Maria'];
+        return $users;
     }
 
 }

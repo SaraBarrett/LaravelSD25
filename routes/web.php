@@ -18,7 +18,9 @@ Route::get('/welcome/{name}', function ($name) {
     return "<h1>Bem Vindo $name</h1>";
 });
 
+//rotas de users
 Route::get('/add-users', [UserController::class, 'addUser'])->name('users.add');
+Route::get('/all-users',[UserController::class, 'listUsers'])->name('users.all');
 
 
 Route::fallback( function(){

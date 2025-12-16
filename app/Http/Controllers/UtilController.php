@@ -12,9 +12,26 @@ class UtilController extends Controller
         $age = 39;
         $students = ['Rafael', 'Luísa', 'Luís'];
 
+        $userData = [
+            'name' => 'Sara',
+            'age'=> 39
+        ];
+
+
+        $cesaeInfo = $this->getCesaeInfo();
 
         return view('homepage',compact(
         'myName',
-        'age','students'));
+        'age','students', 'userData', 'cesaeInfo'));
+    }
+
+    private function getCesaeInfo(){
+        $cesaeInfo = [
+            'name' => 'Cesae',
+            'address' => 'Rua Ciríaco Cardoso 186, 4150-212 Porto',
+            'email' => 'cesae@cesae.pt'
+        ];
+
+        return  $cesaeInfo;
     }
 }
