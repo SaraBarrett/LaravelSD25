@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UtilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,15 +9,16 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/hello', function () {
-    return "<h1>Olá Mundo</h1>";})->name('hello');
+    return "<h1>Olá Mundo</h1>";
+})->name('hello');
 
-Route::get('/home', function(){
-    return view('homepage');
-});
+Route::get('/home', [UtilController::class, 'home']);
 
 Route::get('/welcome/{name}', function ($name) {
     return "<h1>Bem Vindo $name</h1>";
 });
+
+Route::get('/add-users', [UserController::class, 'addUser'])->name('users.add');
 
 
 Route::fallback( function(){
