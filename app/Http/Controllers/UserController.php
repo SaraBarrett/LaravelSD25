@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -15,7 +16,10 @@ class UserController extends Controller
     public function listUsers(){
         $usersThatWillComeFromDB = ['Manuela', 'Vítor', 'Alexandre', 'Bruno'];
 
-        return view('users.all_users', compact('usersThatWillComeFromDB'));
+       $usersFromDB = db::table('users')->get();
+
+
+        return view('users.all_users', compact('usersThatWillComeFromDB', 'usersFromDB'));
     }
 
     private function getAllUsers(){
@@ -23,6 +27,24 @@ class UserController extends Controller
         //no futuro carregamos dados da base de dados (query À BD)
         $users = ['Francisco', 'Luís','Rafaela', 'Maria'];
         return $users;
+    }
+
+    private function insertUserIntoDB(){
+
+        DB::table('users')->updateOrinsert(
+            ['email' =>'teste1@gmail.com'],
+            [
+            'name' =>'Sara',
+            'updated_at'=>now(),
+            'password' => '1234444'
+        ]);
+    }
+
+    private function deleteUserFromDB(){
+        Db::table('users')
+        ->where('id',4)
+        ->delete();
+
     }
 
 }
