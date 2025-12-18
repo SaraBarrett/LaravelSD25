@@ -22,7 +22,8 @@ Route::get('/welcome/{name}', function ($name) {
 //rotas de users
 Route::get('/add-users', [UserController::class, 'addUser'])->name('users.add');
 Route::get('/all-users',[UserController::class, 'listUsers'])->name('users.all');
-
+Route::get('/user/{id}', [UserController::class, 'viewUser'])->name('users.view');
+Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
 //rotas de tasks
 Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all');

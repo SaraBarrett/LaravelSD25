@@ -23,12 +23,40 @@ class UserController extends Controller
         return view('users.all_users', compact('usersThatWillComeFromDB', 'usersFromDB'));
     }
 
+    public function viewUser($id){
+        //carregar uma nova view
+        //com os dados do user onde estamos a clicar
+        $user = User::where('id', $id)->first();
+
+        return view('users.view_user', compact('user'));
+
+    }
+
+    public function deleteUser($id){
+
+        //se tiver tasks associadas, apaga
+        Db::table('tasks')
+        ->where('user_id', $id)
+        ->delete();
+
+
+        DB::table('users')
+        ->where('id', $id)
+        ->delete();
+
+
+        return back();
+
+    }
+
     private function getAllUsers(){
 
         //no futuro carregamos dados da base de dados (query À BD)
         $users = ['Francisco', 'Luís','Rafaela', 'Maria'];
         return $users;
     }
+
+
 
     private function insertUserIntoDB(){
 
