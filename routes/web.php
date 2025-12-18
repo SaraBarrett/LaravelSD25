@@ -25,8 +25,12 @@ Route::get('/all-users',[UserController::class, 'listUsers'])->name('users.all')
 Route::get('/user/{id}', [UserController::class, 'viewUser'])->name('users.view');
 Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
+
 //rotas de tasks
 Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
+
+Route::get('/task/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');
+Route::get('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
 
 
 Route::fallback( function(){
