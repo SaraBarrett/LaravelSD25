@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +38,33 @@ class TaskController extends Controller
         return back();
 
     }
+
+     public function addTask(){
+
+
+        return view('tasks.add_task');
+    }
+
+       //função que recebe os dados do form
+    public function storeTask(Request $request){
+        //dd($request->all());
+        //validar se os dados recebidos estão em conformidade com a BAse de dados
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'user_id' =>'exists:users,id'
+        ]);
+
+        //inserir user na base de dados
+        Task::insert([
+            'name' => $request->name,
+            'description' => $request->description,
+            'user_id' => $request->user_id,
+        ]);
+
+        return redirect()->route('tasks.all')->with('message', 'Tarefa adicionada com sucesso!');
+    }
+
 
     //função que faz a query à base de dados
     protected function getAllTasks(){

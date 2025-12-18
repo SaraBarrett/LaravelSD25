@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -47,6 +48,26 @@ class UserController extends Controller
 
         return back();
 
+    }
+
+    //função que recebe os dados do form
+    public function storeUser(Request $request){
+        //dd($request->all());
+        //validar se os dados recebidos estão em conformidade com a BAse de dados
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' =>'min:8|required'
+        ]);
+
+        //inserir user na base de dados
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('users.all')->with('message', 'User adicionado com sucesso!');
     }
 
     private function getAllUsers(){

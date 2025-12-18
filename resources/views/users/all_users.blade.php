@@ -9,6 +9,10 @@
     </ul>
 
     <h6>Users vindos da BD</h6>
+    @if (session('message'))
+    <div class="alert alert-success">{{session('message')}}</div>
+    @endif
+
 
     <table class="table">
         <thead>
