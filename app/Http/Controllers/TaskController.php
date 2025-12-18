@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,9 +41,9 @@ class TaskController extends Controller
     }
 
      public function addTask(){
+$users = User::get();
 
-
-        return view('tasks.add_task');
+        return view('tasks.add_task', compact('users'));
     }
 
        //função que recebe os dados do form
@@ -52,7 +53,7 @@ class TaskController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'user_id' =>'exists:users,id'
+            'user_id' =>'required|exists:users,id'
         ]);
 
         //inserir user na base de dados

@@ -1,6 +1,10 @@
 @extends('layouts.fe_master')
 @section('content')
     <h5>Aqui estão todas as Tarefas da Base de Dados</h5>
+    @if (session('message'))
+        <div class="alert alert-success">{{ session('message') }}</div>
+    @endif
+
     <table class="table">
         <thead>
             <tr>

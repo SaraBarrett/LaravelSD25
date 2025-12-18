@@ -7,22 +7,29 @@
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nome</label>
-            <input required name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input required name="name" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
         </div>
         @error('name')
             <p class="text-danger"> Erro de nome</p>
         @enderror
-         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nome</label>
-            <input required name="description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Descrição</label>
+            <input required name="description" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
         </div>
         @error('description')
             <p class="text-danger"> Erro de descrição</p>
         @enderror
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input required name="password" type="password" class="form-control" id="exampleInputPassword1">
-        </div>
+
+        <select name="user_id" id="">
+            <option value="">Escolha User</option>
+            @foreach ($users as $user)
+                <option value="{{ $user->id}}">{{ $user->name}}</option>
+            @endforeach
+
+        </select> <br>
+        <br>
         @error('password')
             <p class="text-danger"> Erro de user</p>
         @enderror
