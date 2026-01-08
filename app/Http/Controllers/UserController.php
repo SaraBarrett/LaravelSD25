@@ -18,8 +18,19 @@ class UserController extends Controller
     public function listUsers(){
         $usersThatWillComeFromDB = ['Manuela', 'Vítor', 'Alexandre', 'Bruno'];
 
-       $usersFromDB = User::get();
 
+
+        //if eu tiver um campo de search
+        $search = request()->query('search') ? request()->query('search') : null;
+
+        $usersFromDB = DB::table('users');
+
+        if($search){
+         $usersFromDB->where('name', 'LIKE' , "%$search%")
+         ->orWhere('email', 'LIKE' , "%$search%");
+        }
+
+        $usersFromDB =$usersFromDB->get();
 
         return view('users.all_users', compact('usersThatWillComeFromDB', 'usersFromDB'));
     }

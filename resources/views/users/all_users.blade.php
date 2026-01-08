@@ -10,9 +10,13 @@
 
     <h6>Users vindos da BD</h6>
     @if (session('message'))
-    <div class="alert alert-success">{{session('message')}}</div>
+        <div class="alert alert-success">{{ session('message') }}</div>
     @endif
 
+    <form action="" method="get">
+        <input type="text" name="search">
+        <button  type="submit" class="btn btn-secondary">Pesquisar</button>
+    </form>
 
     <table class="table">
         <thead>
@@ -32,8 +36,8 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->nif }}</td>
-                    <td><a href="{{route('users.view', $user->id)}}" class="btn btn-info">Ver / Editar</a></td>
-                    <td><a href="{{route('users.delete', $user->id)}}" class="btn btn-danger">Apagar</a></td>
+                    <td><a href="{{ route('users.view', $user->id) }}" class="btn btn-info">Ver / Editar</a></td>
+                    <td><a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">Apagar</a></td>
                 </tr>
             @endforeach
         </tbody>
