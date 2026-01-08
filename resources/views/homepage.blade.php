@@ -1,11 +1,11 @@
 @extends('layouts.fe_master')
 
 @section('content')
-    @if ($myName)
-        <h5>Bem vindo {{ $myName }}</h5>
-    @else
-        <h1>Caro utilizador, faça login</h1>
-    @endif
+    @auth
+        <h5>Olá {{Auth::user()->name}}</h5>
+    @endauth
+
+
     <p>{{ $userData['name'] }} - {{ $userData['age'] }}</p>
     <p>{{ $cesaeInfo['name'] }} {{ $cesaeInfo['email'] }} {{ $cesaeInfo['address'] }}</p>
 

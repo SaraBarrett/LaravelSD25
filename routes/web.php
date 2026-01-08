@@ -39,7 +39,7 @@ Route::get('/add-task', [TaskController::class, 'addTask'])->name('tasks.add');
 //rota de post que pega nos dados do user e envia para o backend/servidor
 Route::post('/store-task',[TaskController::class, 'storeTask'])->name('tasks.store');
 
-Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all');
+Route::get('/tasks', [TaskController::class, 'allTasks'])->name('tasks.all')->middleware('auth');
 
 Route::get('/task/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');
 Route::get('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
