@@ -70,6 +70,24 @@ class UserController extends Controller
         return redirect()->route('users.all')->with('message', 'User adicionado com sucesso!');
     }
 
+    public function updateUser(Request $request){
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        DB::table('users')
+        ->where('id', $request->id)
+        ->update([
+            'name' =>$request->name,
+            'address' =>$request->address,
+            'nif' =>$request->nif,
+            'updated_at'=> now()
+        ]);
+
+        return redirect()->route('users.all')->with('message', 'User actualizado com sucesso!');
+
+    }
+
     private function getAllUsers(){
 
         //no futuro carregamos dados da base de dados (query À BD)

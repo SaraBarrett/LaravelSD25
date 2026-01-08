@@ -30,6 +30,7 @@ Route::post('/store-user',[UserController::class, 'storeUser'])->name('users.sto
 Route::get('/all-users',[UserController::class, 'listUsers'])->name('users.all');
 Route::get('/user/{id}', [UserController::class, 'viewUser'])->name('users.view');
 Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
+Route::put('/update-users', [UserController::class, 'updateUser'])->name('users.update');
 
 
 //rotas de tasks
