@@ -2,7 +2,11 @@
 
 @section('content')
     @auth
-        <h5>Olá {{Auth::user()->name}}</h5>
+        <h5>Olá {{ Auth::user()->name }}</h5>
+
+        @if (Auth::user()->user_type == \App\Models\User::TYPE_ADMIN)
+            <p>Conta de admin</p>
+        @endif
     @endauth
 
 
