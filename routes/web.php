@@ -45,6 +45,9 @@ Route::get('/task/{id}', [TaskController::class, 'viewTask'])->name('tasks.view'
 Route::get('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
 
 
+//rota para gerar um excel com os users da base de dados
+Route::get('/users', [UserController::class,'generateExcel'])->name('users.generate');
+
 Route::fallback( function(){
     return '<h5>Ups, essa página não existe</h5>';
 });
